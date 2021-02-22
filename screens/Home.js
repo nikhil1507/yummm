@@ -3,16 +3,11 @@ import AppView from "../components/AppView";
 import { useFonts } from "expo-font";
 import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "../assets/Colors";
 import Card from "../components/Card";
+import Tag from "../components/Tag";
 
 export default function () {
   const [loaded] = useFonts({
@@ -44,34 +39,77 @@ export default function () {
         value={value}
         style={style.input}
       />
-      <View style={style.labelContainer}>
-        <AppText
-          style={{
-            fontSize: 25,
-            flex: 1,
-            fontFamily: "MontserratBold",
-          }}
-        >
-          Today's fresh recepies
-        </AppText>
-        <TouchableOpacity onPress={() => console.log("pressed")}>
-          <Feather
-            name="more-horizontal"
-            style={{ marginLeft: 10 }}
-            size={30}
-            color={Colors.blinkerColor}
-          />
-        </TouchableOpacity>
-      </View>
-      <ScrollView horizontal style={{ marginTop: 20 }}>
-        <Card
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={style.labelContainer}>
+          <AppText
+            style={{
+              fontSize: 25,
+              flex: 1,
+              fontFamily: "MontserratBold",
+            }}
+          >
+            Today's fresh recepies
+          </AppText>
+          <TouchableOpacity onPress={() => console.log("pressed")}>
+            <Feather
+              name="more-horizontal"
+              style={{ marginLeft: 10 }}
+              size={30}
+              color={Colors.blinkerColor}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ height: "auto" }}>
+          <ScrollView
+            horizontal
+            style={{ marginTop: 20 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            <Card
+              category="Breakfast"
+              name="French toast with omlete"
+              calories="120 Calories"
+              time={"10 mins"}
+              servings={"1 serving"}
+            />
+            <Card />
+          </ScrollView>
+        </View>
+        <View style={style.labelContainer}>
+          <AppText
+            style={{
+              fontSize: 25,
+              flex: 1,
+              fontFamily: "MontserratBold",
+              marginBottom: 10,
+              marginTop: 10,
+            }}
+          >
+            Recommmended
+          </AppText>
+          <TouchableOpacity onPress={() => console.log("pressed")}>
+            <Feather
+              name="more-horizontal"
+              style={{ marginLeft: 10 }}
+              size={30}
+              color={Colors.blinkerColor}
+            />
+          </TouchableOpacity>
+        </View>
+        <Tag
           category="Breakfast"
           name="French toast with omlete"
           calories="120 Calories"
           time={"10 mins"}
           servings={"1 serving"}
         />
-        <Card />
+        <Tag
+          category="Breakfast"
+          name="French toast with omlete"
+          calories="120 Calories"
+          time={"10 mins"}
+          servings={"1 serving"}
+        />
       </ScrollView>
     </AppView>
   );
