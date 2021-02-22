@@ -3,8 +3,8 @@ import {
   View,
   StyleSheet,
   Image,
-  TouchableNativeFeedback,
   Text,
+  TouchableNativeFeedback,
 } from "react-native";
 import Colors from "../assets/Colors";
 import AppText from "./AppText";
@@ -22,10 +22,9 @@ export default function ({
     <TouchableNativeFeedback onPress={onPress}>
       <View style={styles.container}>
         <Image
-          source={require("../assets/Images/fresh_recipe_1.png")}
-          height={50}
-          width={50}
-          style={styles.image}
+          height={20}
+          width={20}
+          source={require("../assets/Images/reco_1.png")}
         />
         <View style={styles.details}>
           <AppText
@@ -35,24 +34,26 @@ export default function ({
           </AppText>
           <AppText numberOfLines={1}>{name}</AppText>
           <Text style={styles.calories}>{calories}</Text>
-        </View>
-        <View style={styles.additionals}>
-          <Ionicons
-            name="alarm-outline"
-            color={Colors.secondaryGray}
-            size={20}
-          />
-          <Text style={{ fontSize: 15, color: Colors.secondaryGray, flex: 1 }}>
-            {time}
-          </Text>
-          <Ionicons
-            name="restaurant-outline"
-            color={Colors.secondaryGray}
-            size={20}
-          />
-          <Text style={{ fontSize: 15, color: Colors.secondaryGray }}>
-            {servings}
-          </Text>
+          <View style={styles.additionals}>
+            <Ionicons
+              name="alarm-outline"
+              color={Colors.secondaryGray}
+              size={20}
+            />
+            <Text
+              style={{ fontSize: 15, color: Colors.secondaryGray, flex: 1 }}
+            >
+              {time}
+            </Text>
+            <Ionicons
+              name="restaurant-outline"
+              color={Colors.secondaryGray}
+              size={20}
+            />
+            <Text style={{ fontSize: 15, color: Colors.secondaryGray }}>
+              {servings}
+            </Text>
+          </View>
         </View>
       </View>
     </TouchableNativeFeedback>
@@ -63,32 +64,28 @@ const styles = StyleSheet.create({
   additionals: {
     display: "flex",
     flexDirection: "row",
-    position: "absolute",
     justifyContent: "center",
     alignItems: "center",
     padding: 2,
-    bottom: 10,
-    right: 10,
   },
   calories: {
+    marginBottom: 10,
     color: Colors.orange,
   },
   container: {
-    height: 250,
-    width: 200,
+    height: 120,
+    width: "100%",
     backgroundColor: Colors.primaryGray,
     borderRadius: 10,
     marginRight: 25,
     padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
   },
   details: {
     position: "absolute",
-    bottom: 40,
-    padding: 10,
-  },
-  image: {
-    position: "absolute",
-    right: -20,
-    top: 10,
+    right: 10,
   },
 });
