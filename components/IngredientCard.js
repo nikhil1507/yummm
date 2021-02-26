@@ -2,7 +2,7 @@ import React from "react";
 import Colors from "../assets/Colors";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-export default function () {
+export default function ({ name }) {
   return (
     <View
       style={{
@@ -20,7 +20,7 @@ export default function () {
         />
       </View>
       <Text style={{ marginTop: 5, color: Colors.lightGray, fontSize: 17 }}>
-        burger
+        {name}
       </Text>
     </View>
   );

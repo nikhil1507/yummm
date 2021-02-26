@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Colors from "../assets/Colors";
 import { useFonts } from "expo-font";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function ({ onPress }) {
   const [loaded] = useFonts({
@@ -21,11 +22,13 @@ export default function ({ onPress }) {
   return (
     <TouchableNativeFeedback onPress={onPress}>
       <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/Images/google.png")}
+        <Ionicons
+          name="ios-fast-food-outline"
+          size={50}
+          style={{ marginRight: 10 }}
+          color="black"
         />
-        <Text style={styles.label}>Take Off With Google!</Text>
+        <Text style={styles.label}>Take Off!</Text>
       </View>
     </TouchableNativeFeedback>
   );
