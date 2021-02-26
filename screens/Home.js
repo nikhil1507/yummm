@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppView from "../components/AppView";
 import { useFonts } from "expo-font";
 import AppText from "../components/AppText";
 import AppInput from "../components/AppInput";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "../assets/Colors";
 import Card from "../components/Card";
@@ -15,7 +21,31 @@ export default function () {
     MontserratBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
   });
 
+  const [fresh, setFresh] = useState([]);
+  const [recommend, setRecommend] = useState([]);
+
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    getData();
+    getRecommend();
+  }, []);
+
+  const getData = async () => {
+    await fetch("http://10.0.2.2:5000/api/freshRecepie")
+      .then((res) => res.json())
+      .then((data) => {
+        setFresh(data);
+      });
+  };
+
+  const getRecommend = async () => {
+    await fetch("http://10.0.2.2:5000/api/recommended")
+      .then((res) => res.json())
+      .then((data) => {
+        setRecommend(data);
+      });
+  };
 
   const handleChangeText = (text) => {
     setValue(text);
@@ -65,14 +95,19 @@ export default function () {
             style={{ marginTop: 20 }}
             showsHorizontalScrollIndicator={false}
           >
-            <Card
-              category="Breakfast"
-              name="French toast with omlete"
-              calories="120 Calories"
-              time={"10 mins"}
-              servings={"1 serving"}
-            />
-            <Card />
+            {fresh.map((i) => (
+              <Card
+                key={i.recepieDetails.todayFresh[0]._id}
+                category={i.recepieDetails.todayFresh[0].foodType}
+                name={i.recepieDetails.todayFresh[0].dishName}
+                calories={i.recepieDetails.todayFresh[0].calories}
+                time={i.recepieDetails.todayFresh[0].time}
+                servings={i.recepieDetails.todayFresh[0].serving}
+                source={{
+                  uri: i.recepieDetails.todayFresh[0].image,
+                }}
+              />
+            ))}
           </ScrollView>
         </View>
         <View style={style.labelContainer}>
@@ -96,20 +131,19 @@ export default function () {
             />
           </TouchableOpacity>
         </View>
-        <Tag
-          category="Breakfast"
-          name="French toast with omlete"
-          calories="120 Calories"
-          time={"10 mins"}
-          servings={"1 serving"}
-        />
-        <Tag
-          category="Breakfast"
-          name="French toast with omlete"
-          calories="120 Calories"
-          time={"10 mins"}
-          servings={"1 serving"}
-        />
+        {recommend.map((i) => (
+          <Tag
+            key={i.recepieDetails.recommended[0]._id}
+            category={i.recepieDetails.recommended[0].foodType}
+            name={i.recepieDetails.recommended[0].dishName}
+            calories={i.recepieDetails.recommended[0].calories}
+            time={i.recepieDetails.recommended[0].time}
+            servings={i.recepieDetails.recommended[0].serving}
+            source={{
+              uri: i.recepieDetails.recommended[0].image,
+            }}
+          />
+        ))}
       </ScrollView>
     </AppView>
   );
