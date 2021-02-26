@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { useFonts } from "expo-font";
 import IngredientCard from "../components/IngredientCard";
 
-export default function () {
+export default function ({ route }) {
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/Montserrat-Light.ttf"),
     MontserratBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
@@ -35,9 +35,9 @@ export default function () {
           </Text>
           <View style={{ width: "100%", height: "auto" }}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <IngredientCard />
-              <IngredientCard />
-              <IngredientCard />
+              <IngredientCard name="Ingredient 1" />
+              <IngredientCard name="Ingredient 2" />
+              <IngredientCard name="Ingredient 3" />
             </ScrollView>
           </View>
           <Text style={[styles.label, { marginVertical: 10 }]}>Recepie</Text>
@@ -45,19 +45,7 @@ export default function () {
           {/* Recepie  */}
 
           <Text style={[styles.content, { marginBottom: 40 }]}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was ook a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting, nter
-            took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was ook
-            a galley of type and scrambled it to make a type specimen book. It
-            has survived not only
+            {route.params.recepie}
           </Text>
         </ScrollView>
       </View>

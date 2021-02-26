@@ -15,7 +15,7 @@ import Colors from "../assets/Colors";
 import Card from "../components/Card";
 import Tag from "../components/Tag";
 
-export default function () {
+export default function ({ navigation }) {
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/Montserrat-Light.ttf"),
     MontserratBold: require("../assets/fonts/Montserrat-SemiBold.ttf"),
@@ -106,6 +106,12 @@ export default function () {
                 source={{
                   uri: i.recepieDetails.todayFresh[0].image,
                 }}
+                onPress={() =>
+                  navigation.navigate("Details", {
+                    id: i.recepieDetails.todayFresh[0]._id,
+                    recepie: i.recepieDetails.todayFresh[0].recepie,
+                  })
+                }
               />
             ))}
           </ScrollView>
@@ -142,6 +148,12 @@ export default function () {
             source={{
               uri: i.recepieDetails.recommended[0].image,
             }}
+            onPress={() =>
+              navigation.navigate("Details", {
+                id: i.recepieDetails.recommended[0]._id,
+                recepie: i.recepieDetails.recommended[0].recepie,
+              })
+            }
           />
         ))}
       </ScrollView>

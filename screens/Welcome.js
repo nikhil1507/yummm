@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { default as View } from "../components/AppView";
 import { default as Button } from "../components/AppButton";
 
-export default function () {
+export default function ({ navigation }) {
   const [loaded] = useFonts({
     Montserrat: require("../assets/fonts/Montserrat-Light.ttf"),
   });
@@ -23,7 +23,7 @@ export default function () {
           style={styles.logo}
         />
       </View>
-      <Button />
+      <Button onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
