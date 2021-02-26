@@ -17,15 +17,12 @@ export default function ({
   time,
   servings,
   onPress,
+  source,
 }) {
   return (
     <TouchableNativeFeedback onPress={onPress}>
       <View style={styles.container}>
-        <Image
-          height={20}
-          width={20}
-          source={require("../assets/Images/reco_1.png")}
-        />
+        <Image style={styles.image} source={source} />
         <View style={styles.details}>
           <AppText
             style={{ fontSize: 17, color: Colors.turqoise, fontWeight: "bold" }}
@@ -49,6 +46,7 @@ export default function ({
               name="restaurant-outline"
               color={Colors.secondaryGray}
               size={20}
+              style={{ marginLeft: 5 }}
             />
             <Text style={{ fontSize: 15, color: Colors.secondaryGray }}>
               {servings}
@@ -87,5 +85,10 @@ const styles = StyleSheet.create({
   details: {
     position: "absolute",
     right: 10,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
   },
 });

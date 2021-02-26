@@ -17,16 +17,12 @@ export default function ({
   time,
   servings,
   onPress,
+  source,
 }) {
   return (
     <TouchableNativeFeedback onPress={onPress}>
       <View style={styles.container}>
-        <Image
-          source={require("../assets/Images/fresh_recipe_1.png")}
-          height={50}
-          width={50}
-          style={styles.image}
-        />
+        <Image source={source} style={styles.image} />
         <View style={styles.details}>
           <AppText
             style={{ fontSize: 17, color: Colors.turqoise, fontWeight: "bold" }}
@@ -90,5 +86,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: -20,
     top: 10,
+    height: 100,
+    width: 100,
   },
 });
